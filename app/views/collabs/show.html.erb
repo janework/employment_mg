@@ -1,0 +1,206 @@
+<br>
+<div class="row">
+	<div class='col-5 offset-1'>
+		<% collab =  @collab %>
+		<ul class='list-group'>
+			<li class='list-group-item active'>
+				<h2 class='text-center'>   Collaborateur  </h2>
+			</li>
+			<li class='list-group-item'>
+				<div class='row'>
+					<div class='col-5'>
+						<em>ID </em>
+					</div>
+					<div class='col-7'>
+						<%= collab[:id] %>
+					</div>
+				</div>
+			</li>
+			<li class='list-group-item'>
+				<div class='row'>
+					<div class='col-5'>
+						<em>Nom </em>
+					</div>
+					<div class='col-7'>
+						<%= collab[:lastname] %>
+					</div>
+				</div>
+			</li>
+			<li class='list-group-item'>
+				<div class='row'>
+					<div class='col-5'>
+						<em>Prénom </em>
+					</div>
+					<div class='col-7'>
+						<%= collab[:firstname] %>
+					</div>
+				</div>
+			</li>
+			<li class='list-group-item'>
+				<div class='row'>
+					<div class='col-5'>
+						<em>Poste </em>
+					</div>
+					<div class='col-7'>
+						<%= collab.function.try(:title) %>
+					</div>
+				</div>
+			</li>
+			<li class='list-group-item'>
+				<div class='row'>
+					<div class='col-5'>
+						<em>Adresse </em>
+					</div>
+					<div class='col-7'>
+						<%= collab[:address] %>
+					</div>
+				</div>
+			</li>
+			<li class='list-group-item'>
+				<div class='row'>
+					<div class='col-5'>
+						<em>Date de naissance </em>
+					</div>
+					<div class='col-7'>
+						<%= collab[:birth_date] %>
+					</div>
+				</div>
+			</li>
+			<li class='list-group-item'>
+				<div class='row'>
+					<div class='col-5'>
+						<em> N° securité sociale </em>
+					</div>
+					<div class='col-7'>
+						<%= collab[:social_security_number] %>
+					</div>
+				</div>
+			</li>
+			<li class='list-group-item'>
+				<div class='row'>
+					<div class='col-5'>
+						<em>Lieu de naissance </em>
+					</div>
+					<div class='col-7'>
+						<%= collab[:birth_city] %>
+					</div>
+				</div>
+			</li>
+			<li class='list-group-item'>
+				<div class='row'>
+					<div class='col-5'>
+						<em>Nationalité </em>
+					</div>
+					<div class='col-7'>
+						<%= collab[:nationality] %>
+					</div>
+				</div>
+			</li>
+			<p> <%= link_to 'Liste', collabs_path  %> </p>
+		</ul>
+	</div>
+	<div class='col-5 '>
+		<% function =  @function %>
+		<ul class='list-group'>
+			<li class='list-group-item active'>
+				<h2 class='text-center'>   Détails du poste  </h2>
+			</li>
+			<li class='list-group-item'>
+				<div class='row'>
+					<div class='col-5'>
+						<em>Employeur </em>
+					</div>
+					<div class='col-7'>
+						<%= collab.firm.try(:name) %>
+					</div>
+				</div>
+			</li>
+			<li class='list-group-item'>
+				<div class='row'>
+					<div class='col-5'>
+						<em>Poste </em>
+					</div>
+					<div class='col-7'>
+						<%= collab.function.try(:title) %>
+					</div>
+				</div>
+			</li>
+			<li class='list-group-item text-center list-group-item-info'>
+				<em>
+				Classification Convention collective
+				<%= collab.firm.present? && collab.firm.collective_agreement? ?
+					collab.firm.collective_agreement : "Aucune" %>
+				</em>
+			</li>
+			<li class='list-group-item'>
+				<div class='row'>
+					<div class='col-5'>
+						<em>Niveau </em>
+					</div>
+					<div class='col-7'>
+						<%= function[:level] %>
+					</div>
+				</div>
+			</li>
+			<li class='list-group-item'>
+				<div class='row'>
+					<div class='col-5'>
+						<em>Coefficient </em>
+					</div>
+					<div class='col-7'>
+						<%= function[:coefficient] %>
+					</div>
+				</div>
+			</li>
+			<li class='list-group-item'>
+				<div class='row'>
+					<div class='col-5'>
+						<em>Statut </em>
+					</div>
+					<div class='col-7'>
+						<%= function[:status] %>
+					</div>
+				</div>
+			</li>
+			<li class='list-group-item text-center list-group-item-info'>
+				<em>
+				Rémunération
+				</em>
+			</li>
+			<li class='list-group-item'>
+				<div class='row'>
+					<div class='col-5'>
+						<em>Salaire/m </em>
+					</div>
+					<div class='col-7'>
+						<%= function[:monthly_starting_salary] %> €
+					</div>
+				</div>
+			</li>
+			<li class='list-group-item'>
+				<div class='row'>
+					<div class='col-5'>
+						<em>Salaire/an </em>
+					</div>
+					<div class='col-7'>
+						<%= function[:annual_starting_salary] %> €
+					</div>
+				</div>
+			</li>
+			<li class='list-group-item'>
+				<div class='row'>
+					<div class='col-5'>
+						<em>Primes</em>
+					</div>
+					<div class='col-7'>
+						<%= function[:bonus] %> €
+					</div>
+				</div>
+			</li>
+		</ul>
+	</div>
+</div>
+<div class="col-3 offset-1">
+	<%= link_to "Modifier données Collaborateur", edit_collab_path(collab), class: 'btn btn-info' %>
+</div>
+<br>

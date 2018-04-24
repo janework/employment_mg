@@ -1,0 +1,147 @@
+<p style="text-align: center;">
+    <strong> <%= contract.nature %> </strong>
+</p>
+<p>
+     <em>Entre :   </em>
+</p>
+<p>
+    <%= firm.try(:name) %>, <%= firm.try(:legal_form) %>, représenté
+    par <%= firm.try(:representative).try(:name) %>, en qualité
+    de <%= firm.try(:representative).try(:function).try(:title) %> , immatriculée au RCS sous le numéro
+    <%= firm.try(:siret) %>, située à <%= firm.try(:rcs) %>.
+</p>
+<p>
+    ci-après dénommé l’employeur,
+</p>
+<p>
+    <em>Et</em>
+</p>
+<p>
+    <%= collab.try(:name) %>, de nationalité <%= collab.try(:nationality) %> né(e) le <%= collab.try(:birth_date) %>,
+    à <%= collab.try(:birth_city) %> immatriculé(e) à la Sécurité
+    sociale sous le numéro <%= collab.try(:social_security_number) %> demeurant <%= collab.try(:address) %>.
+</p>
+<p>
+    ci-après dénommé le salarié,
+</p>
+<p>
+    Il a été arrêté et convenu ce qui suit :
+</p>
+<p>
+    <strong><p style="text-align: center;">Article 1 : Engagement</p></strong>
+</p>
+<p>
+    Le salarié est embauché à compter du  <%= contract.try(:hiring_date) %>. Le salarié déclare être, à compter de la date effective d’embauche, libre
+    de tout engagement de nature à faire obstacle à l’exécution du présent
+    contrat.
+</p>
+<p>
+    <strong><p style="text-align: center;">Article 2 : Fonctions et attributions</p></strong>
+</p>
+<p>
+    Le salarié est engagé en qualité de <%= function.try(:title) %> , statut "<%= function.try(:status) %>",
+    Niveau "<%= function.try(:level) %>",
+    Coefficient "<%= function.try(:coefficient) %>" et exercera les
+    fonctions suivantes :  <%= contract.try(:task) %>
+</p>
+<p>
+    <strong><p style="text-align: center;">Article 3 : Période d’essai</p></strong>
+</p>
+<p>
+    Il est convenu entre les parties au contrat de travail une période d’essai
+    de  <%= contract.try(:initial_trial_period_duration) %> <%= contract.try(:initial_trial_period_type) %>.
+    au cours de laquelle chacune des parties pourra rompre sans
+    indemnités et sans avoir à motiver sa décision sous réserve du respect du
+    délai de prévenance prévu par la loi. La période d’essai pourra faire
+    l'objet d'un renouvellement.
+    <br/>
+</p>
+<p>
+    <strong><p style="text-align: center;">Article 4 : Lieu de travail</p></strong>
+</p>
+<p>
+    Le salarié exercera ses fonctions dans les locaux situés à <%= firm.try(:address) %>.
+    Eu égard, toutefois, à la nature des fonctions du Salarié, le Salarié accepte, par avance,
+     une mobilité géographique et/ou un ou des changements de lieu de travail qui seraient
+     nécessités par l’intérêt du service ainsi que l’activité de l’Employeur,
+     dans la zone "<%= contract.try(:mobility_zone) %>" .
+</p>
+<p>
+    <strong><p style="text-align: center;">Article 5 : Durée de travail</p></strong>
+</p>
+<p>
+    L’horaire de travail est déterminé en fonction de la catégorie
+    professionnelle à laquelle appartient le titulaire. Il pourra être modifié
+    pour assurer le bon fonctionnement de l’entreprise. Des heures
+    supplémentaires pourront être effectuées dans le respect de la législation
+    applicable.
+</p>
+<p>
+    Le salarié effectuera  <%= contract.try(:week_work_duration) %>  heures par semaine.
+</p>
+<p>
+    <strong><p style="text-align: center;">Article 6 : Rémunération</p></strong>
+</p>
+<p>
+    En contrepartie de son activité, le salarié percevra une rémunération
+    mensuelle brute totale de <%= function.try(:monthly_starting_salary) %> euros
+</p>
+<p>
+    Les notes de frais devront être contresignées par l’employeur.
+</p>
+<p>
+    <strong><p style="text-align: center;">Article 7 : Congés payés</p></strong>
+</p>
+<p>
+    Le salarié bénéficiera de <%= contract.try(:paid_vacation_days) %> jours de congés payés par an.
+    Les dates de congés seront arrêtées par l’employeur.
+</p>
+<p>
+    <strong><p style="text-align: center;">Article 8 : Droits collectifs</p></strong>
+</p>
+<p>
+    Le présent contrat est soumis à la convention collective <%= firm.try(:collective_agreement) %> applicable à
+    l’entreprise.
+    <br/>
+</p>
+<p>
+    <strong><p style="text-align: center;">Article 9 : Maladie</p></strong>
+</p>
+<p>
+    En cas de maladie ou d’accident, le Salarié devra avertir son employeur du
+    motif et de la durée probable de son absence dès que possible et envoyer
+    dans les 48 heures de la cessation de travail un certificat médical
+    qui précise la durée de son indisponibilité.
+</p>
+<p>
+    <strong><p style="text-align: center;">Article 10 : Préavis</p></strong>
+</p>
+<p>
+    Chacune des parties a la possibilité de rompre le présent contrat dans les
+    conditions prévues par la loi, sous réserve de respecter les délais de préavis légaux,
+    sauf situation pour laquelle l’obligation d’effectuer un préavis est
+    écartée, c’est-à-dire pour faute grave ou faute lourde.
+</p>
+<p>
+    Fait en double exemplaire à ………………………………………………, le ………………………….
+</p>
+<p>
+    Signature à faire précéder de la mention manuscrite « lu et approuvé »
+</p>
+
+<table width="100%" >
+  <tr>
+    <td width="50%">
+      L’employeur,<br>
+      <%= firm.try(:name) %>, <br>
+      <%= firm.try(:representative).try(:name) %>
+    </td>
+    <td width="50%">
+      Le salarié,<br>
+      <%= collab.try(:name) %>
+    </td>
+  </tr>
+</table>
+
+
+                                                               

@@ -1,0 +1,14 @@
+<br>
+<h3> Function </h3>
+<br>
+
+<%= simple_form_for function do |f|  %>
+  <%= f.input :title, label: 'Titre' %>
+  <%= f.input :level, label: 'Niveau' %>
+  <%= f.input :coefficient, label: 'Coefficient' %>
+  <%= f.input :status, label: 'Statut' %>
+  <%= f.input :monthly_starting_salary, label: 'Salaire/m' %>
+  <%= f.input :annual_starting_salary, label: 'Salaire/an' %>
+  <%= f.input :bonus, label: 'Primes' %>
+  <%= f.submit  %>
+<% end  %>

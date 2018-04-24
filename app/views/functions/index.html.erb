@@ -1,0 +1,33 @@
+<br>
+<div class="row">
+	<div class="col-9 text-center">
+		<h3>Postes </h3>
+	</div>
+	<br>
+	<div class="col-3">
+		<%= link_to "Nouveau poste", new_function_path, class: 'btn btn-info' %>
+	</div>
+</div>
+<% functions =  @functions %>
+<table class='table table-sm table-hover table-striped'>
+	<thead>
+		<tr class='' style='height: 50px'>
+			<th scope='col' class='align-middle'> ID </th>
+			<th scope='col' class='align-middle'> Titre </th>
+			<th scope='col' class='align-middle'> Statut </th>
+			<th scope='col' class='align-middle'> Salaire/m </th>
+			<th scope='col' class='align-middle'> Salaire/an </th>
+		</tr>
+	</thead>
+	<tbody>
+		<% functions.each do |function| %>
+			<tr>
+				<td><%= link_to function[:id], function %></td>
+				<td><%= function[:title] %></td>
+				<td><%= function[:status] %></td>
+				<td><%= function[:monthly_starting_salary] %> €</td>
+				<td><%= function[:annual_starting_salary] %> €</td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>

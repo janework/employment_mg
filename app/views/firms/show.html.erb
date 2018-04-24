@@ -1,0 +1,143 @@
+<br>
+<div class='col-8 offset-2'>
+	<% firm =  @firm %>
+	<% representative =  @representative %>
+	<% function =  @function %>
+	<ul class='list-group'>
+		<li class='list-group-item active'>
+			<h1 class='text-center'>   Employeur  </h1>
+		</li>
+		<li class='list-group-item'>
+			<div class='row'>
+				<div class='col-6'>
+					<em> ID </em>
+				</div>
+				<div class='col-6'>
+					<%= firm[:id] %>
+				</div>
+			</div>
+		</li>
+		<li class='list-group-item'>
+			<div class='row'>
+				<div class='col-6'>
+					<em>Nom </em>
+				</div>
+				<div class='col-6'>
+					<%= firm[:name] %>
+				</div>
+			</div>
+		</li>
+		<li class='list-group-item'>
+			<div class='row'>
+				<div class='col-6'>
+					<em>Adresse </em>
+				</div>
+				<div class='col-6'>
+					<%= firm[:address] %>
+				</div>
+			</div>
+		</li>
+		<li class='list-group-item'>
+			<div class='row'>
+				<div class='col-6'>
+					<em>SIRET </em>
+				</div>
+				<div class='col-6'>
+					<%= firm[:siret] %>
+				</div>
+			</div>
+		</li>
+		<li class='list-group-item'>
+			<div class='row'>
+				<div class='col-6'>
+					<em>RCS/RM </em>
+				</div>
+				<div class='col-6'>
+					<%= firm[:rcs] %>
+				</div>
+			</div>
+		</li>
+		<li class='list-group-item'>
+			<div class='row'>
+				<div class='col-6'>
+					<em>Forme juridique </em>
+				</div>
+				<div class='col-6'>
+					<%= firm[:legal_form] %>
+				</div>
+			</div>
+		</li>
+		<li class='list-group-item'>
+			<div class='row'>
+				<div class='col-6'>
+					<em>N° URSSAF </em>
+				</div>
+				<div class='col-6'>
+					<%= firm[:urssaf] %>
+				</div>
+			</div>
+		</li>
+		<li class='list-group-item'>
+			<div class='row'>
+				<div class='col-6'>
+					<em>Agence URSSAF </em>
+				</div>
+				<div class='col-6'>
+					<%= firm[:urssaf_place] %>
+				</div>
+			</div>
+		</li>
+		<li class='list-group-item'>
+			<div class='row'>
+				<div class='col-6'>
+					<em>Convention collective </em>
+				</div>
+				<div class='col-6'>
+					<%= firm[:collective_agreement] %>
+				</div>
+			</div>
+		</li>
+		<li class='list-group-item'>
+			<div class='row'>
+				<div class='col-6'>
+					<em>Créé le </em>
+				</div>
+				<div class='col-6'>
+					<%= firm[:created_at] %>
+				</div>
+			</div>
+		</li>
+		<li class='list-group-item text-center list-group-item-info'>
+			<em>
+			Représentant légal
+			</em>
+		</li>
+		<li class='list-group-item'>
+			<div class='row'>
+				<div class='col-6'>
+					<em>Nom  </em>
+				</div>
+				<div class='col-6'>
+					<%= representative.try(:name) %>
+				</div>
+			</div>
+		</li>
+		<li class='list-group-item'>
+			<div class='row'>
+				<div class='col-6'>
+					<em>Poste </em>
+				</div>
+				<div class='col-6'>
+					<%= function.try(:title) %>
+				</div>
+			</div>
+		</li>
+		<!-- <p> <%#= link_to 'Liste', firms_path  %> </p> -->
+	</ul>
+</div>
+<div class="col-3 offset-2">
+	<br>
+	<%= link_to "Modifier Employeur", edit_firm_path(firm),
+	class: 'btn btn-info' %>
+</div>
+<br>

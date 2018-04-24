@@ -1,0 +1,33 @@
+<br>
+<div class="row">
+	<div class="col-9 text-center">
+		<h3>Contrats </h3>
+	</div>
+	<br>
+	<div class="col-3 ">
+		<%= link_to "Nouveau contrat", new_contract_path, class: 'btn btn-info' %>
+	</div>
+</div>
+<% contracts =  Contract.all %>
+<table class='table table-sm table-hover table-striped'>
+	<thead>
+		<tr class='' style='height: 50px'>
+			<th scope='col' class='align-middle'> ID </th>
+			<th scope='col' class='align-middle'> Date d'embauche </th>
+			<th scope='col' class='align-middle'> Zone mobilité </th>
+			<th scope='col' class='align-middle'> Collaborateur </th>
+			<th scope='col' class='align-middle'> Créé le </th>
+		</tr>
+	</thead>
+	<tbody>
+		<% contracts.each do |contract| %>
+			<tr>
+				<td><%= link_to contract[:id], contract %></td>
+				<td><%= contract[:hiring_date] %></td>
+				<td><%= contract[:mobility_zone] %></td>
+				<td><%= contract.collab.try(:name) %></td>
+				<td><%= contract[:created_at] %></td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>

@@ -10,14 +10,76 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180420104655) do
+ActiveRecord::Schema.define(version: 20180420112334) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "collabs", force: :cascade do |t|
+    t.string "firstname"
+    t.string "lastname"
+    t.string "address"
+    t.string "gender"
+    t.date "birth_date"
+    t.string "social_security_number"
+    t.string "birth_city"
+    t.string "nationality"
+    t.bigint "firm_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["firm_id"], name: "index_collabs_on_firm_id"
+  end
+
+  create_table "contracts", force: :cascade do |t|
+    t.date "hiring_date"
+    t.string "mobility_zone"
+    t.string "nature"
+    t.string "task"
+    t.float "week_work_duration"
+    t.integer "paid_vacation_days"
+    t.integer "initial_trial_period_duration"
+    t.boolean "renewal_trial_period", default: true, null: false
+    t.string "initial_trial_period_type"
+    t.bigint "firm_id"
+    t.bigint "collab_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["collab_id"], name: "index_contracts_on_collab_id"
+    t.index ["firm_id"], name: "index_contracts_on_firm_id"
+  end
+
+  create_table "firms", force: :cascade do |t|
+    t.string "name"
+    t.string "address"
+    t.string "siret"
+    t.string "rcs"
+    t.string "legal_form"
+    t.string "urssaf"
+    t.string "urssaf_place"
+    t.string "collective_agreement"
+    t.integer "representative_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "functions", force: :cascade do |t|
+    t.string "title"
+    t.string "level"
+    t.string "coefficient"
+    t.string "status"
+    t.integer "monthly_starting_salary"
+    t.integer "annual_starting_salary"
+    t.string "bonus"
+    t.bigint "collab_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["collab_id"], name: "index_functions_on_collab_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
+    t.boolean "admin", default: false, null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -32,4 +94,8 @@ ActiveRecord::Schema.define(version: 20180420104655) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "collabs", "firms"
+  add_foreign_key "contracts", "collabs"
+  add_foreign_key "contracts", "firms"
+  add_foreign_key "functions", "collabs"
 end

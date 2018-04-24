@@ -1,0 +1,167 @@
+<br>
+<% contract =  @contract %>
+<% firm =  Firm.first %>
+<% collab =  @collab %>
+<% function =  @function %>
+<div class="row">
+<div class='col-4'>
+	<ul class='list-group'>
+		<li class='list-group-item active'>
+			<h1 class='text-center'>   Contrat  </h1>
+		</li>
+		<li class='list-group-item'>
+			<div class='row'>
+				<div class='col-5'>
+					<em>ID </em>
+				</div>
+				<div class='col-7'>
+					<%= contract[:id] %>
+				</div>
+			</div>
+		</li>
+		<li class='list-group-item'>
+			<div class='row'>
+				<div class='col-5'>
+					<em>Collaborateur </em>
+				</div>
+				<div class='col-7'>
+					<%= contract.collab.try(:name) %>
+				</div>
+			</div>
+		</li>
+		<li class='list-group-item'>
+			<div class='row'>
+				<div class='col-5'>
+					<em>Poste </em>
+				</div>
+				<div class='col-7'>
+					<%= collab.function.try(:title).capitalize %>
+				</div>
+			</div>
+		</li>
+		<li class='list-group-item'>
+			<div class='row'>
+				<div class='col-5'>
+					<em>Salaire/m </em>
+				</div>
+				<div class='col-7'>
+					<%= function[:monthly_starting_salary] %> €
+				</div>
+			</div>
+		</li>
+		<li class='list-group-item'>
+			<div class='row'>
+				<div class='col-5'>
+					<em>Date d'embauche </em>
+				</div>
+				<div class='col-7'>
+					<%= contract[:hiring_date] %>
+				</div>
+			</div>
+		</li>
+		<li class='list-group-item'>
+			<div class='row'>
+				<div class='col-5'>
+					<em>Nature du contrat</em>
+				</div>
+				<div class='col-7'>
+					<%= contract[:nature] == Contract::NATURES.first ? "CDI" : "CDD" %>
+				</div>
+			</div>
+		</li>
+		<li class='list-group-item'>
+			<div class='row'>
+				<div class='col-5'>
+					<em>Fonctions exercées </em>
+				</div>
+				<div class='col-7'>
+					<%= contract[:task].capitalize %>
+				</div>
+			</div>
+		</li>
+		<li class='list-group-item'>
+			<div class='row'>
+				<div class='col-5'>
+					<em>Durée de travail hebdomadaire </em>
+				</div>
+				<div class='col-7'>
+					<%= contract[:week_work_duration] %>
+				</div>
+			</div>
+		</li>
+		<li class='list-group-item'>
+			<div class='row'>
+				<div class='col-5'>
+					<em>Nombre de jours de congés payés par an </em>
+				</div>
+				<div class='col-7'>
+					<%= contract[:paid_vacation_days] %>
+				</div>
+			</div>
+		</li>
+		<li class='list-group-item'>
+			<div class='row'>
+				<div class='col-5'>
+					<em>Durée de la période d'essai </em>
+				</div>
+				<div class='col-7'>
+					<% if !contract[:initial_trial_period_duration].nil? %>
+					<%= "#{contract.initial_trial_period_duration} #{contract.initial_trial_period_type }" %>
+					<% end  %>
+				</div>
+			</div>
+		</li>
+		<li class='list-group-item'>
+			<div class='row'>
+				<div class='col-5'>
+					<em> Période d'essai</em>
+				</div>
+				<div class='col-7'>
+					<%=  contract[:renewal_trial_period] ? "Renouvelable" : "Non renouvelable" %>
+				</div>
+			</div>
+		</li>
+		<li class='list-group-item'>
+			<div class='row'>
+				<div class='col-5'>
+					<em>Zone de mobilité </em>
+				</div>
+				<div class='col-7'>
+					<%= contract[:mobility_zone].capitalize %>
+				</div>
+			</div>
+		</li>
+		<li class='list-group-item'>
+			<div class='row'>
+				<div class='col-5'>
+					<em>Créé le </em>
+				</div>
+				<div class='col-7'>
+					<%= contract[:created_at] %>
+				</div>
+			</div>
+		</li>
+		<p> <%= link_to 'Liste', contracts_path  %> </p>
+		<p> <%= link_to "Genérer PDF", contract_path(contract,format: :pdf), class:"btn btn-info"  %> </p>
+	</ul>
+	<div class="col-3 offset-2">
+		<br>
+		<%= link_to "Modifier le contrat", edit_contract_path(contract),
+			class: 'btn btn-info' %>
+	</div>
+</div>
+<div class='col-8' >
+	<ul class='list-group'>
+		<li class='list-group-item active'>
+			<h2 class='text-center'>   Aperçu  </h2>
+		</li>
+	</ul>
+	<div>
+		<br>
+		<div style="background-color: white; padding: 20px">
+			<br/>
+			<%= render 'contract', firm: firm, contract: contract, collab: collab, function: function  %>
+		</div>
+	</div>
+	<br>	
+</div>

@@ -1,0 +1,34 @@
+<div class="col-10 offset-1">
+  <br>
+  <h1 class="text-center"> Collaborateur </h1>
+  <br>
+
+  <%= simple_form_for collab, html: { class: 'form-horizontal' },
+    wrapper: :horizontal_form do |f|  %>
+    <h3 class="text-center">Identité</h3>
+    <%= f.input :lastname, label: 'Nom' %>
+    <%= f.input :firstname, label: 'Prénom' %>
+    <%= f.input :address, label: 'Adresse' %>
+    <%= f.input :birth_date, as: :string, required: false,
+      input_html: { class: "datepicker" }, label: 'Date de naissance' %>
+    <%= f.input :social_security_number,
+      label: 'N° securité sociale' %>
+    <%= f.input :birth_city, label: 'Lieu de naissance' %>
+    <%= f.input :nationality, label: 'Nationalité' %>
+
+    <%= f.simple_fields_for :function do |p| %>
+      <h3 class="text-center">Poste</h3>
+      <%= p.input :title, label: 'Titre' %>
+      <%= p.input :level, label: 'Niveau' %>
+      <%= p.input :coefficient, label: 'Coefficient' %>
+      <%= p.input :status, label: 'Statut' %>
+      <h3 class="text-center">Rémunération</h3>
+      <%= p.input :monthly_starting_salary, label: 'Salaire/m' %>
+      <%= p.input :annual_starting_salary, label: 'Salaire/an' %>
+      <%= p.input :bonus, label: 'Primes' %>
+    <% end %>
+
+    <%= f.submit "Enregistrer", class: 'btn btn-info'  %>
+  <% end  %>
+  <br>
+</div>
