@@ -1,119 +1,52 @@
 <br>
-<div class='col-8 offset-2'>
-	<ul class='list-group'>
-		<li class='list-group-item active'>
-			<h1 class='text-center'>   Poste  </h1>
-		</li>
-		<li class='list-group-item'>
-			<div class='row'>
-				<div class='col-6'>
-					<em>id </em>
-				</div>
-				<div class='col-6'>
-					<%= function[:id] %>
-				</div>
-			</div>
-		</li>
-		<li class='list-group-item'>
-			<div class='row'>
-				<div class='col-6'>
-					<em>title </em>
-				</div>
-				<div class='col-6'>
-					<%= function[:title] %>
-				</div>
-			</div>
-		</li>
-		<li class='list-group-item'>
-			<div class='row'>
-				<div class='col-6'>
-					<em>level </em>
-				</div>
-				<div class='col-6'>
-					<%= function[:level] %>
-				</div>
-			</div>
-		</li>
-		<li class='list-group-item'>
-			<div class='row'>
-				<div class='col-6'>
-					<em>coefficient </em>
-				</div>
-				<div class='col-6'>
-					<%= function[:coefficient] %>
-				</div>
-			</div>
-		</li>
-		<li class='list-group-item'>
-			<div class='row'>
-				<div class='col-6'>
-					<em>status </em>
-				</div>
-				<div class='col-6'>
-					<%= function[:status] %>
-				</div>
-			</div>
-		</li>
-		<li class='list-group-item'>
-			<div class='row'>
-				<div class='col-6'>
-					<em>monthly_starting_salary </em>
-				</div>
-				<div class='col-6'>
-					<%= function[:monthly_starting_salary] %>
-				</div>
-			</div>
-		</li>
-		<li class='list-group-item'>
-			<div class='row'>
-				<div class='col-6'>
-					<em>annual_starting_salary </em>
-				</div>
-				<div class='col-6'>
-					<%= function[:annual_starting_salary] %>
-				</div>
-			</div>
-		</li>
-		<li class='list-group-item'>
-			<div class='row'>
-				<div class='col-6'>
-					<em>bonus </em>
-				</div>
-				<div class='col-6'>
-					<%= function[:bonus] %>
-				</div>
-			</div>
-		</li>
-		<li class='list-group-item'>
-			<div class='row'>
-				<div class='col-6'>
-					<em>collab_id </em>
-				</div>
-				<div class='col-6'>
-					<%= function[:collab_id] %>
-				</div>
-			</div>
-		</li>
-		<li class='list-group-item'>
-			<div class='row'>
-				<div class='col-6'>
-					<em>created_at </em>
-				</div>
-				<div class='col-6'>
-					<%= function[:created_at] %>
-				</div>
-			</div>
-		</li>
-		<li class='list-group-item'>
-			<div class='row'>
-				<div class='col-6'>
-					<em>updated_at </em>
-				</div>
-				<div class='col-6'>
-					<%= function[:updated_at] %>
-				</div>
-			</div>
-		</li>
-		<p> <%= link_to 'Liste', functions_path  %> </p>
-	</ul>
-</div>
+<h3> Contrat </h3>
+<br>
+<% contract =  @contract %>
+<% collab = !params[:collab].nil? ? params[:collab] : 0 %>
+<%= simple_form_for contract do |f|  %>
+	<div class="row">
+		<div class="col-6">
+			<% if !collab.nil? && collab != 0 %>
+				<%= f.input :collab_id, collection: Collab.all,
+					label: false, selected: collab %>
+			<% else %>
+				<%= f.input :collab_id, collection: Collab.all, prompt: 'Sélectionner un Collaborateur',
+					label: false %>
+				<% end %>
+		</div>
+		<div class="col-6">
+			<%= f.input :nature, collection: Contract::NATURES,
+				label: false,  selected: 1 %>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-6">
+			<%= f.input :hiring_date, as: :string, label: 'Date d\'embauche ', input_html: { class: "datepicker" } %>
+		</div>
+		<div class="col-6">
+			<%= f.input :week_work_duration, label: 'Durée de travail hebdomadaire',
+				input_html: {value: f.object.week_work_duration || Contract::DEFAULT_WEEK_HOURS} %>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-6">
+			<%= f.input :initial_trial_period_duration, label: 'Durée de la période d\'essai' %>
+		</div>
+		<div class="col-6">
+			<%= f.input :initial_trial_period_type, collection: Contract::TIME_PERIODS, label: 'exprimée en jours/mois',  selected: 1 %>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-6">
+			<%= f.input :renewal_trial_period, collection: [[true, 'Oui'], [false, 'Non']], label: 'Période d\essai renouvelable',
+				label_method: :second, value_method: :first  %>
+		</div>
+		<div class="col-6">
+			<%= f.input :paid_vacation_days, label: 'Nombre de jours de congés payés par an',
+				input_html: {value: f.object.paid_vacation_days || Contract::DEFAULT_PAID_VACATION_DAYS} %>
+		</div>
+	</div>
+	<%= f.input :mobility_zone, label: 'Zone de mobilité' %>
+	<%= f.input :task, as: :text, label: 'Fonctions exercées' %>
+	<%= f.submit "Enregistrer", class: "btn btn-info"  %>
+<% end  %>
