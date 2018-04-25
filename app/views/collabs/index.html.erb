@@ -16,6 +16,7 @@
 			<th scope='col' class='align-middle'> Nom </th>
 			<th scope='col' class='align-middle'> Prénom </th>
 			<th scope='col' class='align-middle'> Poste </th>
+			<th scope='col' class='align-middle'> Ajouter contrat </th>
 		</tr>
 	</thead>
 	<tbody>
@@ -25,6 +26,7 @@
 				<td><%= collab[:lastname] %></td>
 				<td><%= collab[:firstname] %></td>
 				<td><%= collab.function.try(:title) %></td>
+				<td><%= link_to "Nouveau contrat".html_safe, new_contract_path + "?collab=#{collab[:id]}" %></td>
 			</tr>
 		<% end %>
 	</tbody>
