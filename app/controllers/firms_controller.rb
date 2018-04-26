@@ -26,7 +26,7 @@ class FirmsController < ApplicationController
   end
 
   def edit
-    @representative = @representative.present? ?
+    @representative = @firm.representative.present? ?
       @firm.representative : @firm.build_representative
     @function = @representative.function.nil? ?
       @representative.build_function  : @representative.function

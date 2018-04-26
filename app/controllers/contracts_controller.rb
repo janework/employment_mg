@@ -8,6 +8,8 @@ class ContractsController < ApplicationController
 
   def new
     @contract = Contract.new
+    firm = Firm.first
+    @collabs = Collab.where.not(id: firm.representative_id)
   end
 
   def create

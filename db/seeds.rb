@@ -16,6 +16,11 @@ p Firm.all
 puts "End of Firm seed"
 
 Collab.destroy_all
+puts "Start creation of representative"
+Collab.create!(firstname: "Jean", lastname: "Olivera")
+print "Representative : "
+p Collab.all
+
 puts "start of Collab seed"
 Collab.create!(firstname: "Jean", lastname: "Olivera", address: "1 rue de l'Opéra, 75001, Paris",
   birth_date: Date.new(1980,2,3), social_security_number: "280037512014525", birth_city: "Paris",
@@ -26,11 +31,18 @@ puts "End of Collab seed"
 
 Function.destroy_all
 puts "start of Function seed"
+Function.create!(title: "DRH", collab_id: 1)
 Function.create!(title: "commercial", level: "II", coefficient: "55", monthly_starting_salary: 2000 ,
-  annual_starting_salary: 26000, bonus: 0, collab_id: 1, status: "agent de maîtrise")
+  annual_starting_salary: 26000, bonus: 0, collab_id: 2, status: "agent de maîtrise")
 print "Function : "
 p Function.all
 puts "End of Function seed"
+
+puts "start of updating Firm seed"
+Firm.first.update!(representative_id: 1)
+print "Firm updated : "
+p Firm.all
+puts "End of update of Firm seed"
 
 Contract.destroy_all
 puts "start of Contract seed"
