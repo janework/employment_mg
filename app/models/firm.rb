@@ -10,4 +10,8 @@ class Firm < ApplicationRecord
   accepts_nested_attributes_for :representative, allow_destroy: true,
     reject_if: proc { |att| att['lastname'].blank? }
 
+  def simple_collabs
+    Collab.where.not(id: self.representative_id)
+  end
+
 end

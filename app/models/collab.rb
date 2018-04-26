@@ -1,5 +1,7 @@
 class Collab < ApplicationRecord
   GENDERS = ["H", "F"]
+  STATUSES = ["ouvrier", "employé", "technicien", "agent de maîtrise",
+    "cadre"]
   CIVILITIES = ["Monsieur","Madame"]
   belongs_to :firm, optional: true
   has_many :contracts
@@ -11,11 +13,6 @@ class Collab < ApplicationRecord
 
   accepts_nested_attributes_for :function, allow_destroy: true,
     reject_if: proc { |att| att['title'].blank? }
-
-  def set_default_firm
-    firm = Firm.first
-    self.firm = firm if firm.present?
-  end
 
   def format_name
     self.lastname.upcase!

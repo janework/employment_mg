@@ -142,13 +142,11 @@
 			</div>
 		</li>
 		<p> <%= link_to 'Liste', contracts_path  %> </p>
-		<p> <%= link_to "Genérer PDF", contract_path(contract,format: :pdf), class:"btn btn-info"  %> </p>
+		<p>
+			<%= link_to "Genérer PDF", contract_path(contract,format: :pdf), class:"btn btn-info"  %>
+			<%= link_to "Modifier le contrat", edit_contract_path(contract), class: 'btn btn-info' %>
+		</p>
 	</ul>
-	<div class="col-3 offset-2">
-		<br>
-		<%= link_to "Modifier le contrat", edit_contract_path(contract),
-			class: 'btn btn-info' %>
-	</div>
 </div>
 <div class='col-8' >
 	<ul class='list-group'>
@@ -163,5 +161,5 @@
 			<%= render 'contract', firm: firm, contract: contract, collab: collab, function: function  %>
 		</div>
 	</div>
-	<br>	
+	<br>
 </div>

@@ -8,20 +8,25 @@
     <h3 class="text-center">Identité</h3>
     <%= f.input :lastname, label: 'Nom' %>
     <%= f.input :firstname, label: 'Prénom' %>
+    <%= f.input :gender, label: 'Sexe', collection: Collab::GENDERS,
+      selected: f.object.gender || Collab::GENDERS.first   %>
+
     <%= f.input :address, label: 'Adresse' %>
     <%= f.input :birth_date, as: :string, required: false,
       input_html: { class: "datepicker" }, label: 'Date de naissance' %>
     <%= f.input :social_security_number,
       label: 'N° securité sociale' %>
     <%= f.input :birth_city, label: 'Lieu de naissance' %>
-    <%= f.input :nationality, label: 'Nationalité' %>
+    <%= f.input :nationality, label: 'Nationalité',
+      input_html: { value: f.object.nationality || 'française' }  %>
+
 
     <%= f.simple_fields_for :function do |p| %>
       <h3 class="text-center">Poste</h3>
       <%= p.input :title, label: 'Titre' %>
       <%= p.input :level, label: 'Niveau' %>
       <%= p.input :coefficient, label: 'Coefficient' %>
-      <%= p.input :status, label: 'Statut' %>
+      <%= p.input :status, collection: Collab::STATUSES, label: 'Statut' %>
       <h3 class="text-center">Rémunération</h3>
       <%= p.input :monthly_starting_salary, label: 'Salaire/m' %>
       <%= p.input :annual_starting_salary, label: 'Salaire/an' %>

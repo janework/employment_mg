@@ -3,8 +3,7 @@ class CollabsController < ApplicationController
   skip_before_action :authenticate_user!, only: :index
 
   def index
-    firm = Firm.first
-    @collabs = Collab.where.not(id: firm.representative_id)
+    @collabs = Firm.first.try(:simple_collabs)
   end
 
   def new
