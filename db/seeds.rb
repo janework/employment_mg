@@ -17,14 +17,14 @@ puts "End of Firm seed"
 
 Collab.destroy_all
 puts "Start creation of representative"
-Collab.create!(firstname: "Jean", lastname: "Olivera")
+Collab.create!(firstname: "Marc", lastname: "Rivet", gender: "H")
 print "Representative : "
 p Collab.all
 
 puts "start of Collab seed"
 Collab.create!(firstname: "Jean", lastname: "Olivera", address: "1 rue de l'Opéra, 75001, Paris",
   birth_date: Date.new(1980,2,3), social_security_number: "280037512014525", birth_city: "Paris",
-  nationality: "Française", firm_id: 1, gender: "H")
+  nationality: "française", firm_id: 1, gender: "H")
 print "Collab : "
 p Collab.all
 puts "End of Collab seed"
@@ -48,8 +48,8 @@ Contract.destroy_all
 puts "start of Contract seed"
 Contract.create!(hiring_date: Date.new(2018,2,3), mobility_zone: "région Ile de France", nature: Contract::NATURES.first,
 task: "prospection, communication, vente, fidélisation des clients", week_work_duration: Contract::DEFAULT_WEEK_HOURS,
-paid_vacation_days: Contract::DEFAULT_PAID_VACATION_DAYS, initial_trial_period_duration: 30,
-initial_trial_period_type: Contract::TIME_PERIODS.first, firm_id: 1, collab_id: 1)
+paid_vacation_days: Contract::DEFAULT_PAID_VACATION_DAYS, initial_trial_period_duration: 3,
+initial_trial_period_type: Contract::TIME_PERIODS.first, firm_id: 1, collab_id: 2)
 print "Contract : "
 p Contract.all
 puts "End of Contract seed"

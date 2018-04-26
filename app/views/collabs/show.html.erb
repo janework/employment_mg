@@ -39,10 +39,20 @@
 			<li class='list-group-item'>
 				<div class='row'>
 					<div class='col-5'>
+						<em>Sexe </em>
+					</div>
+					<div class='col-7'>
+						<%= collab.try(:gender) %>
+					</div>
+				</div>
+			</li>
+			<li class='list-group-item'>
+				<div class='row'>
+					<div class='col-5'>
 						<em>Poste </em>
 					</div>
 					<div class='col-7'>
-						<%= collab.function.try(:title) %>
+						<%= collab.function.try(:title).capitalize %>
 					</div>
 				</div>
 			</li>
@@ -121,7 +131,7 @@
 						<em>Poste </em>
 					</div>
 					<div class='col-7'>
-						<%= collab.function.try(:title) %>
+						<%= collab.function.try(:title).capitalize %>
 					</div>
 				</div>
 			</li>
@@ -158,7 +168,7 @@
 						<em>Statut </em>
 					</div>
 					<div class='col-7'>
-						<%= function[:status] %>
+						<%= function.try(:status).capitalize %>
 					</div>
 				</div>
 			</li>

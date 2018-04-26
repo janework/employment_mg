@@ -31,7 +31,8 @@
 	</div>
 	<div class="row">
 		<div class="col-6">
-			<%= f.input :initial_trial_period_duration, label: 'Durée de la période d\'essai' %>
+			<%= f.input :initial_trial_period_duration, label: 'Durée de la période d\'essai',
+			input_html: { value: 2 } %>
 		</div>
 		<div class="col-6">
 			<%= f.input :initial_trial_period_type, collection: Contract::TIME_PERIODS, label: 'exprimée en jours/mois',  selected: 1 %>
