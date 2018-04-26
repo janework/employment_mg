@@ -2,15 +2,16 @@
 <h3> Contrat </h3>
 <br>
 <% contract =  @contract %>
+<% collabs =  @collabs %>
 <% collab = !params[:collab].nil? ? params[:collab] : 0 %>
 <%= simple_form_for contract do |f|  %>
 	<div class="row">
 		<div class="col-6">
 			<% if !collab.nil? && collab != 0 %>
-				<%= f.input :collab_id, collection: Collab.all,
+				<%= f.input :collab_id, collection: collabs,
 					label: false, selected: collab %>
 			<% else %>
-				<%= f.input :collab_id, collection: Collab.all, prompt: 'Sélectionner un Collaborateur',
+				<%= f.input :collab_id, collection: collabs, prompt: 'Sélectionner un Collaborateur',
 					label: false %>
 				<% end %>
 		</div>
