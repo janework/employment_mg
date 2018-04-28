@@ -1,5 +1,5 @@
 class Collab < ApplicationRecord
-  GENDERS = ["H", "F"]
+  GENDERS = ["Homme", "Femme"]
   STATUSES = ["ouvrier", "employé", "technicien", "agent de maîtrise",
     "cadre"]
   CIVILITIES = ["Monsieur","Madame"]
