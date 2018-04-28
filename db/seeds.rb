@@ -18,6 +18,16 @@ end
 p CollectiveAgreement.all
 
 
+file = Rails.root + "app/csv/nationalities_fr.csv"
+csv = File.read(file)
+
+CSV.parse(csv, headers: true).each do |row|
+  p a = { name: row['nationality'] }
+  FrNationality.create! ( a )
+end
+p FrNationality.all
+
+
 puts "start of users  seed"
 jane = User.create!(email: "jane@gmail.com", password: "azerty", admin: false)
 admin = User.create!(email: "admin@gmail.com", password: "azerty", admin: true)
@@ -49,7 +59,7 @@ p Collab.all
 puts "start of Collab seed"
 Collab.create!(firstname: "Jean", lastname: "Olivera", address: "1 rue de l'Opéra, 75001, Paris",
   birth_date: Date.new(1980,2,3), social_security_number: "280037512014525", birth_city: "Paris",
-  nationality: "française", firm_id: 1, gender: Collab::GENDERS.first, function_id: 2)
+  fr_nationality: Collab.default_nationality, firm_id: 1, gender: Collab::GENDERS.first, function_id: 2)
 print "Collab : "
 p Collab.all
 
