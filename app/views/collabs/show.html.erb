@@ -2,6 +2,7 @@
 <div class="row">
 	<div class='col-5 offset-1'>
 		<% collab =  @collab %>
+		<% function =  @function %>
 		<ul class='list-group'>
 			<li class='list-group-item active'>
 				<h2 class='text-center'>   Collaborateur  </h2>
@@ -12,7 +13,7 @@
 						<em>ID </em>
 					</div>
 					<div class='col-7'>
-						<%= collab[:id] %>
+						<%= collab.id %>
 					</div>
 				</div>
 			</li>
@@ -22,7 +23,7 @@
 						<em>Nom </em>
 					</div>
 					<div class='col-7'>
-						<%= collab[:lastname] %>
+						<%= collab.lastname %>
 					</div>
 				</div>
 			</li>
@@ -32,7 +33,7 @@
 						<em>Prénom </em>
 					</div>
 					<div class='col-7'>
-						<%= collab[:firstname] %>
+						<%= collab.firstname %>
 					</div>
 				</div>
 			</li>
@@ -42,7 +43,7 @@
 						<em>Sexe </em>
 					</div>
 					<div class='col-7'>
-						<%= collab.try(:gender) %>
+						<%= collab.gender %>
 					</div>
 				</div>
 			</li>
@@ -52,7 +53,7 @@
 						<em>Poste </em>
 					</div>
 					<div class='col-7'>
-						<%= collab.function.try(:title).capitalize %>
+						<%= function.try(:title).try(:capitalize) %>
 					</div>
 				</div>
 			</li>
@@ -62,7 +63,7 @@
 						<em>Adresse </em>
 					</div>
 					<div class='col-7'>
-						<%= collab[:address] %>
+						<%= collab.address %>
 					</div>
 				</div>
 			</li>
@@ -72,7 +73,7 @@
 						<em>Date de naissance </em>
 					</div>
 					<div class='col-7'>
-						<%= collab[:birth_date] %>
+						<%= collab.birth_date %>
 					</div>
 				</div>
 			</li>
@@ -82,7 +83,7 @@
 						<em> N° securité sociale </em>
 					</div>
 					<div class='col-7'>
-						<%= collab[:social_security_number] %>
+						<%= collab.social_security_number %>
 					</div>
 				</div>
 			</li>
@@ -92,7 +93,7 @@
 						<em>Lieu de naissance </em>
 					</div>
 					<div class='col-7'>
-						<%= collab[:birth_city] %>
+						<%= collab.birth_city %>
 					</div>
 				</div>
 			</li>
@@ -102,7 +103,7 @@
 						<em>Nationalité </em>
 					</div>
 					<div class='col-7'>
-						<%= collab[:nationality] %>
+						<%= collab.nationality %>
 					</div>
 				</div>
 			</li>
@@ -121,7 +122,7 @@
 						<em>Employeur </em>
 					</div>
 					<div class='col-7'>
-						<%= collab.firm.try(:name) %>
+						<%= collab.try(:firm).try(:name) %>
 					</div>
 				</div>
 			</li>
@@ -131,15 +132,15 @@
 						<em>Poste </em>
 					</div>
 					<div class='col-7'>
-						<%= collab.function.try(:title).capitalize %>
+						<%= function.try(:title).try(:capitalize) %>
 					</div>
 				</div>
 			</li>
 			<li class='list-group-item text-center list-group-item-info'>
 				<em>
-				Classification Convention collective
-				<%= collab.firm.present? && collab.firm.collective_agreement? ?
-					collab.firm.collective_agreement : "Aucune" %>
+				Classification Convention collective IDCC
+				<%= collab.firm.present? && collab.firm.collective_agreement.present? ?
+					collab.firm.collective_agreement.idcc : "Aucune" %>
 				</em>
 			</li>
 			<li class='list-group-item'>
@@ -148,7 +149,7 @@
 						<em>Niveau </em>
 					</div>
 					<div class='col-7'>
-						<%= function[:level] %>
+						<%= function.try(:level) %>
 					</div>
 				</div>
 			</li>
@@ -158,7 +159,7 @@
 						<em>Coefficient </em>
 					</div>
 					<div class='col-7'>
-						<%= function[:coefficient] %>
+						<%= function.try(:coefficient) %>
 					</div>
 				</div>
 			</li>
@@ -168,7 +169,7 @@
 						<em>Statut </em>
 					</div>
 					<div class='col-7'>
-						<%= function.try(:status).capitalize %>
+						<%= function.try(:status).try(:capitalize) %>
 					</div>
 				</div>
 			</li>
@@ -183,7 +184,7 @@
 						<em>Salaire/m </em>
 					</div>
 					<div class='col-7'>
-						<%= function[:monthly_starting_salary] %> €
+						<%= function.try(:monthly_starting_salary) %> €
 					</div>
 				</div>
 			</li>
@@ -193,7 +194,7 @@
 						<em>Salaire/an </em>
 					</div>
 					<div class='col-7'>
-						<%= function[:annual_starting_salary] %> €
+						<%= function.try(:annual_starting_salary) %> €
 					</div>
 				</div>
 			</li>
@@ -203,7 +204,7 @@
 						<em>Primes</em>
 					</div>
 					<div class='col-7'>
-						<%= function[:bonus] %> €
+						<%= function.try(:bonus) %> €
 					</div>
 				</div>
 			</li>

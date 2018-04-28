@@ -11,8 +11,15 @@
   <%= f.input :legal_form, collection: Firm::LEGAL_FORMS, label: 'Forme juridique' %>
   <%= f.input :urssaf, label: 'N° URSSAF' %>
   <%= f.input :urssaf_place, label: 'Agence URSSAF' %>
-  <%= f.input :collective_agreement, label: 'Convention collective' %>
 
+<%= f.association :collective_agreement, input_html: { class: "select2_basic" }  %>
+
+  <!-- <%= f.simple_fields_for :collective_agreement do |coll| %>
+    <%= coll.input :id,
+      collection: CollectiveAgreement.all.map { |c| [ [c.idcc, c.title].join(" "), c.id ] },
+      input_html: { class: "select2_basic" }, label: 'Convention collective' %>
+
+  <% end %> -->
 
   <h3 class="text-center">Représentant légal</h3>
   <%= f.simple_fields_for :representative do |r| %>

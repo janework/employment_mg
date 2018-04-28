@@ -1,3 +1,4 @@
 class Function < ApplicationRecord
-  belongs_to :Collab, optional: true
+  has_one :collab
+  validates :title, presence: true
 end

@@ -8,7 +8,7 @@ class CreateFirms < ActiveRecord::Migration[5.1]
       t.string :legal_form
       t.string :urssaf
       t.string :urssaf_place
-      t.string :collective_agreement
+      t.references :collective_agreement, foreign_key: true
       t.integer :representative_id
 
       t.timestamps

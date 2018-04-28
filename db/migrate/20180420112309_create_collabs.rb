@@ -10,6 +10,7 @@ class CreateCollabs < ActiveRecord::Migration[5.1]
       t.string :birth_city
       t.string :nationality
       t.references :firm, foreign_key: true
+      t.references :function, foreign_key: true
 
       t.timestamps
     end

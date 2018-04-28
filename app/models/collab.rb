@@ -5,7 +5,7 @@ class Collab < ApplicationRecord
   CIVILITIES = ["Monsieur","Madame"]
   belongs_to :firm, optional: true
   has_many :contracts
-  has_one :function
+  belongs_to :function
   validates :lastname, presence: true
   has_one :representative, class_name: "Firm", foreign_key: "representative_id"
   before_validation :set_default_firm

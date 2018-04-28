@@ -25,9 +25,18 @@ ActiveRecord::Schema.define(version: 20180420112334) do
     t.string "birth_city"
     t.string "nationality"
     t.bigint "firm_id"
+    t.bigint "function_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["firm_id"], name: "index_collabs_on_firm_id"
+    t.index ["function_id"], name: "index_collabs_on_function_id"
+  end
+
+  create_table "collective_agreements", force: :cascade do |t|
+    t.string "idcc"
+    t.string "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "contracts", force: :cascade do |t|
@@ -56,10 +65,11 @@ ActiveRecord::Schema.define(version: 20180420112334) do
     t.string "legal_form"
     t.string "urssaf"
     t.string "urssaf_place"
-    t.string "collective_agreement"
+    t.bigint "collective_agreement_id"
     t.integer "representative_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["collective_agreement_id"], name: "index_firms_on_collective_agreement_id"
   end
 
   create_table "functions", force: :cascade do |t|
@@ -70,10 +80,8 @@ ActiveRecord::Schema.define(version: 20180420112334) do
     t.integer "monthly_starting_salary"
     t.integer "annual_starting_salary"
     t.string "bonus"
-    t.bigint "collab_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["collab_id"], name: "index_functions_on_collab_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -95,7 +103,8 @@ ActiveRecord::Schema.define(version: 20180420112334) do
   end
 
   add_foreign_key "collabs", "firms"
+  add_foreign_key "collabs", "functions"
   add_foreign_key "contracts", "collabs"
   add_foreign_key "contracts", "firms"
-  add_foreign_key "functions", "collabs"
+  add_foreign_key "firms", "collective_agreements"
 end

@@ -10,12 +10,14 @@ class FirmsController < ApplicationController
     @firm = Firm.new
     @representative = @firm.build_representative
     @function = @representative.build_function
+    @collective_agreement = @firm.build_collective_agreement
   end
 
   def create
     @firm = Firm.new(firm_params)
     @representative = @firm.representative
     @function = @representative.function
+    @collective_agreement = @firm.collective_agreement
     if @firm.valid?
       @firm.save
       redirect_to firm_path(@firm),
@@ -26,6 +28,9 @@ class FirmsController < ApplicationController
   end
 
   def edit
+    @collective_agreement = @firm.collective_agreement.present? ?
+      @firm.collective_agreement : @firm.build_collective_agreement
+
     @representative = @firm.representative.present? ?
       @firm.representative : @firm.build_representative
     @function = @representative.function.nil? ?
@@ -45,6 +50,7 @@ class FirmsController < ApplicationController
   def show
     @representative = @firm.representative
     @function = @representative.try(:function)
+    @collective_agreement = @firm.collective_agreement
   end
 
   def destroy
