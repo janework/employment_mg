@@ -6,9 +6,13 @@ class Firm < ApplicationRecord
   has_many :contracts
   belongs_to :representative, :class_name => 'Collab',
   :foreign_key => 'representative_id', optional: true
+  belongs_to :collective_agreement, optional: true
 
   accepts_nested_attributes_for :representative, allow_destroy: true,
     reject_if: proc { |att| att['lastname'].blank? }
+
+  accepts_nested_attributes_for :collective_agreement, allow_destroy: true,
+      reject_if: proc { |att| att['idcc'].blank? }
 
   def simple_collabs
     Collab.where.not(id: self.representative_id)

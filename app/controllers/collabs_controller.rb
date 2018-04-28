@@ -13,7 +13,8 @@ class CollabsController < ApplicationController
 
   def create
     @collab = Collab.new(collab_params)
-    @function = @collab.function
+    @function = @collab.function.present? ?
+      @collab.function : @collab.build_function
     if @collab.valid?
       @collab.save
       redirect_to collab_path(@collab),
@@ -27,6 +28,9 @@ class CollabsController < ApplicationController
   end
 
   def update
+    @function = @collab.function.present? ?
+      @collab.function : @collab.build_function
+
     if @collab.valid?
       @collab.update(collab_params)
       redirect_to collab_path(@collab),

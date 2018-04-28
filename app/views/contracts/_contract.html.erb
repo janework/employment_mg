@@ -100,9 +100,9 @@
     <strong><p style="text-align: center;">Article 8 : Droits collectifs</p></strong>
 </p>
 <p>
-    Le présent contrat est soumis à la convention collective <%= firm.try(:collective_agreement) %> applicable à
-    l’entreprise.
-    <br/>
+    Le présent contrat est soumis à la convention collective "<%= firm.try(:collective_agreement).try(:title) %>
+    (IDCC - <%= firm.try(:collective_agreement).try(:idcc) %>)" applicable à l’entreprise.
+
 </p>
 <p>
     <strong><p style="text-align: center;">Article 9 : Maladie</p></strong>

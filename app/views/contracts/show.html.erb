@@ -15,7 +15,7 @@
 					<em>ID </em>
 				</div>
 				<div class='col-7'>
-					<%= contract[:id] %>
+					<%= contract.id %>
 				</div>
 			</div>
 		</li>
@@ -25,7 +25,7 @@
 					<em>Collaborateur </em>
 				</div>
 				<div class='col-7'>
-					<%= contract.collab.try(:name) %>
+					<%= collab.try(:name) %>
 				</div>
 			</div>
 		</li>
@@ -35,7 +35,7 @@
 					<em>Poste </em>
 				</div>
 				<div class='col-7'>
-					<%= collab.function.try(:title).capitalize %>
+					<%= function.try(:title).try(:capitalize) %>
 				</div>
 			</div>
 		</li>
@@ -45,7 +45,7 @@
 					<em>Salaire/m </em>
 				</div>
 				<div class='col-7'>
-					<%= function[:monthly_starting_salary] %> €
+					<%= function.try(:monthly_starting_salary) %> €
 				</div>
 			</div>
 		</li>
@@ -55,7 +55,7 @@
 					<em>Date d'embauche </em>
 				</div>
 				<div class='col-7'>
-					<%= contract[:hiring_date] %>
+					<%= contract.try(:hiring_date) %>
 				</div>
 			</div>
 		</li>
@@ -65,7 +65,7 @@
 					<em>Nature du contrat</em>
 				</div>
 				<div class='col-7'>
-					<%= contract[:nature] == Contract::NATURES.first ? "CDI" : "CDD" %>
+					<%= contract.try(:nature) == Contract::NATURES.first ? "CDI" : "CDD" %>
 				</div>
 			</div>
 		</li>
@@ -75,7 +75,7 @@
 					<em>Fonctions exercées </em>
 				</div>
 				<div class='col-7'>
-					<%= contract[:task].capitalize %>
+					<%= contract.try(:task).try(:capitalize) %>
 				</div>
 			</div>
 		</li>
@@ -85,7 +85,7 @@
 					<em>Durée de travail hebdomadaire </em>
 				</div>
 				<div class='col-7'>
-					<%= contract[:week_work_duration] %>
+					<%= contract.try(:week_work_duration) %>
 				</div>
 			</div>
 		</li>
@@ -95,7 +95,7 @@
 					<em>Nombre de jours de congés payés par an </em>
 				</div>
 				<div class='col-7'>
-					<%= contract[:paid_vacation_days] %>
+					<%= contract.try(:paid_vacation_days) %>
 				</div>
 			</div>
 		</li>
@@ -105,7 +105,7 @@
 					<em>Durée de la période d'essai </em>
 				</div>
 				<div class='col-7'>
-					<% if !contract[:initial_trial_period_duration].nil? %>
+					<% if !contract.try(:initial_trial_period_duration).nil? %>
 					<%= "#{contract.initial_trial_period_duration} #{contract.initial_trial_period_type }" %>
 					<% end  %>
 				</div>
@@ -117,7 +117,7 @@
 					<em> Période d'essai</em>
 				</div>
 				<div class='col-7'>
-					<%=  contract[:renewal_trial_period] ? "Renouvelable" : "Non renouvelable" %>
+					<%=  contract.try(:renewal_trial_period) ? "Renouvelable" : "Non renouvelable" %>
 				</div>
 			</div>
 		</li>
@@ -127,7 +127,7 @@
 					<em>Zone de mobilité </em>
 				</div>
 				<div class='col-7'>
-					<%= contract[:mobility_zone].capitalize %>
+					<%= contract.try(:mobility_zone).try(:capitalize) %>
 				</div>
 			</div>
 		</li>
@@ -137,13 +137,13 @@
 					<em>Créé le </em>
 				</div>
 				<div class='col-7'>
-					<%= contract[:created_at] %>
+					<%= contract.try(:created_at) %>
 				</div>
 			</div>
 		</li>
 		<p> <%= link_to 'Liste', contracts_path  %> </p>
 		<p>
-			<%= link_to "Genérer PDF", contract_path(contract,format: :pdf), class:"btn btn-info"  %>
+			<%= link_to "Genérer PDF", contract_path(contract, format: :pdf), class:"btn btn-info"  %>
 			<%= link_to "Modifier le contrat", edit_contract_path(contract), class: 'btn btn-info' %>
 		</p>
 	</ul>
