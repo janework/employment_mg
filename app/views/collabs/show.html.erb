@@ -83,7 +83,7 @@
 						<em> N° securité sociale </em>
 					</div>
 					<div class='col-7'>
-						<%= collab.social_security_number %>
+						<%= collab.ssn %>
 					</div>
 				</div>
 			</li>
@@ -103,7 +103,7 @@
 						<em>Nationalité </em>
 					</div>
 					<div class='col-7'>
-						<%= collab.nationality %>
+						<%= collab.try(:fr_nationality).try(:name) %>
 					</div>
 				</div>
 			</li>

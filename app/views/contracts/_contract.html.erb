@@ -17,9 +17,9 @@
     <em>Et</em>
 </p>
 <p>
-    <%= collab.try(:name) %>, de nationalité <%= collab.try(:nationality) %> né(e) le <%= collab.try(:birth_date) %>,
+    <%= collab.try(:name) %>, de nationalité <%= collab.try(:fr_nationality).try(:name) %> né(e) le <%= collab.try(:birth_date) %>,
     à <%= collab.try(:birth_city) %> immatriculé(e) à la Sécurité
-    sociale sous le numéro <%= collab.try(:social_security_number) %> demeurant <%= collab.try(:address) %>.
+    sociale sous le numéro <%= collab.try(:ssn) %> demeurant <%= collab.try(:address) %>.
 </p>
 <p>
     ci-après dénommé le salarié,

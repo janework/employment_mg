@@ -23,12 +23,13 @@ ActiveRecord::Schema.define(version: 20180420112334) do
     t.date "birth_date"
     t.string "social_security_number"
     t.string "birth_city"
-    t.string "nationality"
+    t.bigint "fr_nationality_id"
     t.bigint "firm_id"
     t.bigint "function_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["firm_id"], name: "index_collabs_on_firm_id"
+    t.index ["fr_nationality_id"], name: "index_collabs_on_fr_nationality_id"
     t.index ["function_id"], name: "index_collabs_on_function_id"
   end
 
@@ -72,6 +73,12 @@ ActiveRecord::Schema.define(version: 20180420112334) do
     t.index ["collective_agreement_id"], name: "index_firms_on_collective_agreement_id"
   end
 
+  create_table "fr_nationalities", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "functions", force: :cascade do |t|
     t.string "title"
     t.string "level"
@@ -103,6 +110,7 @@ ActiveRecord::Schema.define(version: 20180420112334) do
   end
 
   add_foreign_key "collabs", "firms"
+  add_foreign_key "collabs", "fr_nationalities"
   add_foreign_key "collabs", "functions"
   add_foreign_key "contracts", "collabs"
   add_foreign_key "contracts", "firms"

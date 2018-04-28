@@ -1,0 +1,2 @@
+class FrNationality < ApplicationRecord
+end

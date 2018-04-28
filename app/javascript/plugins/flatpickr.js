@@ -7,7 +7,6 @@ flatpickr(".datepicker", {
   altInput: true,
   altFormat: "j, F Y",
   dateFormat: "Y-m-d",
-  // defaultDate: new Date(-365),
+  defaultDate: 'today',
   locale: "fr",
-  minDate: new Date(-365)
 })

@@ -8,7 +8,7 @@ class CreateCollabs < ActiveRecord::Migration[5.1]
       t.date :birth_date
       t.string :social_security_number
       t.string :birth_city
-      t.string :nationality
+      t.references :fr_nationality, foreign_key: true
       t.references :firm, foreign_key: true
       t.references :function, foreign_key: true
 
