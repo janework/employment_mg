@@ -4,6 +4,12 @@ class Firm < ApplicationRecord
     "SNC", "GIE", "SCP", "EIRL", "EURL", "SASU"]
   has_many :collabs
   has_many :contracts
+  
+  validates :name, presence: true
+  validates :address, presence: true
+  validates :siret, presence: true
+  validates :rcs, presence: true
+ 
   belongs_to :representative, :class_name => 'Collab',
   :foreign_key => 'representative_id', optional: true
   belongs_to :collective_agreement, optional: true
